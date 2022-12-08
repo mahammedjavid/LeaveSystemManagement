@@ -13,7 +13,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { PvtserviceService } from './pvtService/pvtservice.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PvtnotfoundComponent } from './pvtComponents/pvtNotFound/pvtnotfound.component';
-import { HomeBackComponent } from './pvtComponents/home-back/home-back.component';
 
 
 @NgModule({
@@ -25,7 +24,6 @@ import { HomeBackComponent } from './pvtComponents/home-back/home-back.component
     LeavelistComponent,
     UserComponent,
     PvtnotfoundComponent,
-    HomeBackComponent,
   ],
   imports: [
     CommonModule,

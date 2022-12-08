@@ -13,6 +13,7 @@ import { GlobalService } from './Services/global.service';
 import { NgToastModule } from 'ng-angular-popup';
 import { NotfoundComponent } from './components/NotFound/notfound.component';
 import { LoadService } from './load.service';
+import { PvtserviceService } from './private-module/pvtService/pvtservice.service';
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 // function initfactory(loadService: LoadService) {
@@ -32,11 +33,11 @@ import { LoadService } from './load.service';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    PrivateModuleModule,
+    // PrivateModuleModule,
     NgToastModule,
-    // NgbModule,
   ],
   providers: [
+    [PvtserviceService]
     // {
     //   provide: APP_INITIALIZER,
     //   useFactory: initfactory,
