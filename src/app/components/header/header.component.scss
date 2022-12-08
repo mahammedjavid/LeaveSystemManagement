@@ -1,0 +1,28 @@
+#brand {
+  padding: 9px 97px;
+  background-color: cornflowerblue;
+  color: lightskyblue;
+  clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+}
+.right {
+  margin-left: 38%;
+}
+
+@media (max-width: 550px) {
+  #brand {
+    padding: 5px 50px;
+    font-size: medium;
+  }
+  @media (max-width: 405px) {
+    #brand {
+      padding: 5px 40px;
+      font-size: small;
+    }
+    @media (max-width: 340px) {
+      #brand {
+        padding: 5px 10px;
+        clip-path: none;
+      }
+    }
+  }
+}

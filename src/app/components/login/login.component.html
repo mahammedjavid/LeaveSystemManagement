@@ -1,0 +1,15 @@
+<div class="container d-flex ">
+    <form [formGroup]="loginForm" (ngSubmit)="loginSubmit()">
+        <h2 class="text-center">LOGIN</h2>
+        <label>User Name</label>
+        <input type="text" placeholder="Enter You User name" formControlName="userName">
+        <p *ngIf="loginForm.controls['userName'].dirty && loginForm.hasError('required','userName')"
+            class="text-danger mb-0">Please enter Valid UserName</p>
+        <label>Password</label>
+        <input type="password" placeholder="Enter Password" formControlName="password">
+        <p *ngIf="loginForm.controls['password'].dirty && loginForm.hasError('required','password')"
+            class="text-danger mb-0">Please enter
+            valid password </p>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>

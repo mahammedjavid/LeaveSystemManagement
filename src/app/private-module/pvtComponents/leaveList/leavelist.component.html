@@ -1,0 +1,116 @@
+<div class="leaveList">
+  <h2 class="head">Leave List</h2>
+  <!-- Button trigger modal -->
+  <button class="btn btn-primary m-4" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Apply for Leave
+  </button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            Apply for Leave
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form class="w-100" [formGroup]="leaveForm">
+            <label class="w-100 mx-2 my-1">Date <span class="text-danger fw-bold">*</span></label>
+            <input class="w-100 p-2 mx-2 my-1" type="date" placeholder="Enter Date" formControlName="date"
+              name="somedate" />
+            <p *ngIf="
+                    leaveForm.controls['date'].dirty &&
+                    leaveForm.hasError('required', 'date')
+                  " class="text-danger mb-0">
+              Please enter valid Date
+            </p>
+            <label class="w-100 mx-2 my-1">Name <span class="text-danger fw-bold">*</span></label>
+            <input class="w-100 p-2 mx-2 my-1" type="text" placeholder="Enter Your Name" formControlName="name" />
+            <p *ngIf="
+                    leaveForm.controls['name'].dirty &&
+                    leaveForm.hasError('required', 'name')
+                  " class="text-danger mb-0">
+              Please enter valid Name
+            </p>
+            <label class="w-100 mx-2 my-1">Mobile Number
+              <span class="text-danger fw-bold">*</span></label>
+            <input class="w-100 p-2 mx-2 my-1" type="text" placeholder="Enter Mobile Number"
+              formControlName="mobileNumber" />
+            <p *ngIf="
+                    leaveForm.controls['mobileNumber'].dirty &&
+                    leaveForm.hasError('required', 'mobileNumber')
+                  " class="text-danger mb-0">
+              Please enter valid Mobile Number
+            </p>
+            <label class="w-100 mx-2">Days <span class="text-danger fw-bold">*</span></label>
+            <input class="w-100 p-2 mx-2 my-1" type="text" placeholder="How many days" formControlName="days" />
+            <p *ngIf="
+                    leaveForm.controls['days'].dirty &&
+                    leaveForm.hasError('required', 'days')
+                  " class="text-danger mb-0">
+              Please enter days
+            </p>
+            <label class="w-100 mx-2 my-1">Reason <span class="text-danger fw-bold">*</span></label>
+            <textarea cols="30" rows="10" class="w-100 p-2 mx-2 my-1" formControlName="reason"></textarea>
+            <p *ngIf="
+                    leaveForm.controls['reason'].dirty &&
+                    leaveForm.hasError('required', 'reason')
+                  " class="text-danger mb-0">
+              Please enter Reason
+            </p>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="cancel">
+            Close
+          </button>
+          <button type="submit" class="btn btn-primary" *ngIf="!showUpdateBtn" (click)="onleaveApply()">
+            Add
+          </button>
+          <button type="submit" class="btn btn-primary" *ngIf="showUpdateBtn" (click)="updateLeave()">
+            Update
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col" style="width: 200px; text-align: center">Date</th>
+        <th scope="col" style="width: 200px; text-align: center">Name</th>
+        <th scope="col" style="width: 200px; text-align: center">
+          Mobile Number
+        </th>
+        <th scope="col" style="width: 200px; text-align: center">Days</th>
+        <th scope="col" style="width: 200px; text-align: center">Reason</th>
+        <th scope="col" style="width: 350px; text-align: center">Actions</th>
+        <th scope="col" style="width: 200px; text-align: center">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of getLeavelistData">
+        <td style="text-align: center">{{ data.date }}</td>
+        <td style="text-align: center">{{ data.name }}</td>
+        <td style="text-align: center">{{ data.mobileNumber }}</td>
+        <td style="text-align: center">{{ data.days }}</td>
+        <td style="text-align: center">{{ data.reason }}</td>
+        <td style="text-align: center">
+          <span class="d-flex justify-content-center">
+            <button class="btn btn-danger mx-2" (click)="deleteData(data.id)">
+              Delete
+            </button>
+            <button class="btn btn-primary" (click)="editClick(data)" data-bs-toggle="modal"
+              data-bs-target="#exampleModal">
+              Edit
+            </button>
+          </span>
+        </td>
+        <td style="text-align: center">{{ data.status }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

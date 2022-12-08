@@ -1,0 +1,13 @@
+.leaveList {
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+}
+.head {
+  font-weight: bold;
+  text-align: center;
+  margin: 10px 0;
+}
+.btn {
+  align-self: center;
+}

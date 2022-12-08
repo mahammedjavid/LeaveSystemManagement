@@ -1,0 +1,26 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 87vh;
+}
+.container form {
+  color: white;
+  width: 300px;
+  padding: 20px 30px;
+  background: hsl(205deg, 46%, 30%);
+  background: linear-gradient(90deg, hsl(205deg, 46%, 30%) 0%, hsl(260deg, 29%, 36%) 100%);
+  box-shadow: 2px 6px 18px 0px grey;
+}
+.container form input,
+.container form label,
+.container form button {
+  width: 100%;
+  padding: 5px 5px;
+  margin: 1px 0;
+  border: none;
+}
+.container form button {
+  margin: 10px 0;
+}/*# sourceMappingURL=login.component.css.map */

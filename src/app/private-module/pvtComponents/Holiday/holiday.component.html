@@ -1,0 +1,109 @@
+<div class="holiday">
+  <h2>Holiday List</h2>
+  <div class="holidayModal">
+    <!-- Button trigger modal -->
+    <button class="btn btn-primary m-4" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      Add Holiday
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Add Holiday</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form class="w-100" [formGroup]="holidayForm">
+              <label class="w-100 mx-2 my-1">Date <span class="text-danger fw-bold">*</span></label>
+              <input class="w-100 p-2 mx-2 my-1" type="date" placeholder="Enter Date" formControlName="date"
+                name="somedate" />
+              <p *ngIf="
+                    holidayForm.controls['date'].dirty &&
+                    holidayForm.hasError('required', 'date')
+                  " class="text-danger mb-0">
+                Please enter valid Date
+              </p>
+              <label class="w-100 mx-2 my-1">Day <span class="text-danger fw-bold">*</span></label>
+              <input class="w-100 p-2 mx-2 my-1" type="text" placeholder="Enter day" formControlName="day" />
+              <p *ngIf="
+                    holidayForm.controls['day'].dirty &&
+                    holidayForm.hasError('required', 'day')
+                  " class="text-danger mb-0">
+                Please enter valid Day
+              </p>
+              <label class="w-100 mx-2">Name <span class="text-danger fw-bold">*</span></label>
+              <input class="w-100 p-2 mx-2 my-1" type="text" placeholder="Enter Name of holiday"
+                formControlName="name" />
+              <p *ngIf="
+                    holidayForm.controls['name'].dirty &&
+                    holidayForm.hasError('required', 'name')
+                  " class="text-danger mb-0">
+                Please enter valid Name
+              </p>
+              <label class="w-100 mx-2 my-1">Type <span class="text-danger fw-bold">*</span></label>
+              <input class="w-100 p-2 mx-2 my-1" type="text" placeholder="Enter Type of holiday"
+                formControlName="type" />
+              <p *ngIf="
+                    holidayForm.controls['type'].dirty &&
+                    holidayForm.hasError('required', 'type')
+                  " class="text-danger mb-0">
+                Please enter valid Type
+              </p>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="cancel">
+              Close
+            </button>
+            <button type="submit" class="btn btn-primary" *ngIf="!showUpdateBtn"
+              (click)="onSubmitHoliday(holidayForm.value)">
+              Add
+            </button>
+            <button type="submit" class="btn btn-primary" *ngIf="showUpdateBtn" (click)="updateHoliday()">
+              Update
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="second">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col" style="width: 200px; text-align: center"></th>
+          <th scope="col" style="width: 200px; text-align: center">Date</th>
+          <th scope="col" style="width: 200px; text-align: center">Day</th>
+          <th scope="col" style="width: 200px; text-align: center">Name</th>
+          <th scope="col" style="width: 200px; text-align: center">Type</th>
+          <th scope="col" style="width: 200px; text-align: center">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of getholidayData">
+          <th scope="row" style="text-align: center">
+            <img src="https://picsum.photos/150/100" alt="" />
+          </th>
+          <td style="text-align: center">{{ data.date }}</td>
+          <td style="text-align: center">{{ data.day }}</td>
+          <td style="text-align: center">{{ data.name }}</td>
+          <td style="text-align: center">{{ data.type }}</td>
+          <td style="text-align: center">
+            <span class="d-flex justify-content-center">
+              <button class="btn btn-danger mx-2" (click)="deleteData(data.id)">
+                Delete
+              </button>
+              <button class="btn btn-primary" (click)="editClick(data)" data-bs-toggle="modal"
+                data-bs-target="#exampleModal">
+                Edit
+              </button>
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+.notFound {
+  height: 80vh;
+  align-items: center;
+}
+.head {
+  font-weight: 300;
+  line-height: 1.2;
+  font-size: 30px;
+}
+@media (min-width: 670px) {
+  .card {
+    text-align: center;
+    width: 30%;
+  }
+}

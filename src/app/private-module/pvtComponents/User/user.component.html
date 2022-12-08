@@ -1,0 +1,110 @@
+<div class="user">
+  <h2 class="head">User list</h2>
+  <!-- Button trigger modal -->
+  <button class="btn  m-4" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    ADD USER
+  </button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">User Information</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form class="w-100" [formGroup]="addUserForm">
+            <label class="w-100 m-1">First Names <span class="text-danger fw-bold">*</span>
+            </label>
+            <input class="w-100 p-2 m-1" type="text" placeholder="Enter First Name" formControlName="firstName" />
+            <p *ngIf="
+                addUserForm.controls['firstName'].dirty &&
+                addUserForm.hasError('required', 'firstName')
+              " class="text-danger mb-0">
+              Please enter First Name
+            </p>
+            <label class="w-100 m-1">Last Name <span class="text-danger fw-bold">*</span></label>
+            <input class="w-100 p-2 m-1" type="text" placeholder="Enter Last Name" formControlName="lastName" />
+            <p *ngIf="
+                addUserForm.controls['lastName'].dirty &&
+                addUserForm.hasError('required', 'lastName')
+              " class="text-danger mb-0">
+              Please enter Last Name
+            </p>
+            <label class="w-100 m-1">UserName <span class="text-danger fw-bold">*</span></label>
+            <input class="w-100 p-2 m-1" type="text" placeholder="Enter User Name" formControlName="userName" />
+            <p *ngIf="
+                addUserForm.controls['userName'].dirty &&
+                addUserForm.hasError('required', 'userName')
+              " class="text-danger mb-0">
+              Please enter User Name
+            </p>
+            <label class="w-100 m-1">Mobile Number <span class="text-danger fw-bold">*</span></label>
+            <input class="w-100 p-2 m-1" type="text" placeholder="Enter Mobile Number" formControlName="mobileNumber" />
+            <p *ngIf="
+                addUserForm.controls['mobileNumber'].dirty &&
+                addUserForm.hasError('required', 'mobileNumber')
+              " class="text-danger mb-0">
+              Please enter Mobile Number
+            </p>
+            <label class="w-100 m-1">Password <span class="text-danger fw-bold">*</span></label>
+            <input class="w-100 p-2 m-1" type="text" placeholder="Enter Password" formControlName="password" />
+            <p *ngIf="
+                addUserForm.controls['password'].dirty &&
+                addUserForm.hasError('required', 'password')
+              " class="text-danger mb-0">
+              Please enter Password
+            </p>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="cancel">
+            Close
+          </button>
+          <button type="submit" class="btn btn-primary" *ngIf="!showUpdateBtn"
+            (click)="onFormSubmit(addUserForm.value)">
+            Add
+          </button>
+          <button type="submit" class="btn btn-primary" *ngIf="showUpdateBtn" (click)="update()">
+            Update
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="second">
+    <table class="table">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">First Name</th>
+          <th scope="col">Last Name</th>
+          <th scope="col">User Name</th>
+          <th scope="col">Mobile Number</th>
+          <th scope="col">Password</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of getDataInfo">
+          <th scope="row">{{ data.firstName }}</th>
+          <td>{{ data.lastName }}</td>
+          <td>{{ data.userName }}</td>
+          <td>{{ data.mobileNumber }}</td>
+          <td>{{ data.password }}</td>
+          <td>
+            <span class="d-flex justify-content-center">
+              <button class="btn btn-danger mx-2" (click)="deleteData(data.id)">
+                Delete
+              </button>
+              <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                (click)="editClick(data)">
+                Edit
+              </button>
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

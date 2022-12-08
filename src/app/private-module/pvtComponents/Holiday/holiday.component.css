@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.container h2 {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.container td {
+  width: 200px;
+  text-align: center;
+}/*# sourceMappingURL=holiday.component.css.map */

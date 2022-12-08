@@ -1,0 +1,85 @@
+<div class="leaveUpdate">
+    <h2 class="head">Employees Leave Request List</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col" style="width: 200px; text-align: center">Date</th>
+                <th scope="col" style="width: 200px; text-align: center">Name</th>
+                <th scope="col" style="width: 200px; text-align: center">
+                    Mobile Number
+                </th>
+                <th scope="col" style="width: 200px; text-align: center">Days</th>
+                <th scope="col" style="width: 200px; text-align: center">Reason</th>
+                <th scope="col" style="width: 200px; text-align: center">Status</th>
+                <th scope="col" style="width: 200px; text-align: center">
+                    Update Status
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let data of getLeaveListData">
+                <td style="text-align: center">{{ data.date }}</td>
+                <td style="text-align: center">{{ data.name }}</td>
+                <td style="text-align: center">{{ data.mobileNumber }}</td>
+                <td style="text-align: center">{{ data.days }}</td>
+                <td style="text-align: center">{{ data.reason }}</td>
+                <!-- <td style="text-align: center;"><button class="btn btn-danger" (click)="deleteData(data.id)">Delete</button>
+                </td>
+                <td style="text-align: center;"><button class="btn btn-primary" (click)="editClick(data)"
+                        data-bs-toggle="modal" data-bs-target="#exampleModal">Edit</button></td> -->
+                <td style="text-align: center">{{ data.status }}</td>
+                <td style="text-align: center">
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                        (click)="edit(data)">
+                        Update
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Button trigger modal -->
+    <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Launch demo modal
+    </button> -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                        Update Leave Status
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="" [formGroup]="leaveUpdateForm">
+                        <label for="browser" class="form-label w-100 p-2 my-3">Status <span
+                                class="text-danger fw-bold">*</span></label>
+                        <input class="form-control w-50 p-2" list="browsers" name="browser" id="browser"
+                            formControlName="status" />
+                        <p *ngIf="
+                leaveUpdateForm.controls['status'].dirty &&
+                leaveUpdateForm.hasError('required', 'status')
+              " class="text-danger mb-0">
+                            Please enter Valid Status
+                        </p>
+                        <datalist id="browsers">
+                            <option value="Approved"></option>
+                            <option value="Rejected"></option>
+                        </datalist>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="cancel">
+                        Close
+                    </button>
+                    <button type="button" class="btn btn-primary" (click)="update()">
+                        Save changes
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
